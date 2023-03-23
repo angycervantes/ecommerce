@@ -1,11 +1,16 @@
+.header :hover {
+  background-color: #fee5d6;
+}
+
 .header {
+  background-color: #fff;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 15px 30px;
 }
 .header__logo {
-  color: #ffffff;
+  color: #161A31;
   text-decoration: none;
   letter-spacing: 2px;
 }
@@ -16,12 +21,12 @@
        column-gap: 20px;
 }
 .header__item-link {
-  color: #ffffff;
+  color: #161A31;
   text-decoration: none;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   font-size: 16px;
   font-weight: 500;
 }
 .header__item-link:hover, .header__item-link--is-active {
-  border-bottom: n solid 2px #ffffff;
+  border-bottom: solid 2px #fa7f28;
 }/*# sourceMappingURL=Header.css.map */

@@ -1,11 +1,34 @@
-import logo from '@/assets/e-com_3.svg'
+import { useAuthContext } from '@/context/AuthContext'
+import { useNavigate } from 'react-router-dom'
+import useForm from '@/hooks/useForm'
+import { loginUserService } from '@/services/userServices'
+import logo from '@/assets/e-c.svg'
 import '@/styles/form.css'
 
 const Login = () => {
+  const { login } = useAuthContext()
+  const navigate = useNavigate()
+  const sendData = async (data) => {
+    try {
+      const response = await loginUserService(data)
+      if (response.status === 200) {
+        login(response.data.token)
+        navigate('/')
+      }
+    } catch (error) {
+      console.log('Ocurrio un error con el login', error.message)
+    }
+  }
+
+  const { input, handleInputChange, handleSubmit } = useForm(sendData, {
+    email: '',
+    password: ''
+  })
+
   return (
     <main className='form-signin bg-white rounded-3 w-100 m-5 mx-auto'>
-      <form>
-        <img className='mb-4' src={logo} alt='' width='72' height='57' />
+      <form onSubmit={handleSubmit}>
+        <img className='mb-4' src={logo} alt='' width='58.24' height='32' />
         <h1 className='h3 mb-3 fw-normal text-center'>Please sign in</h1>
 
         <div className='form-floating'>
@@ -14,8 +37,8 @@ const Login = () => {
             className='form-control'
             id='floatingInput'
             name='email'
-            value=''
-            onChange={() => {}}
+            value={input.email}
+            onChange={handleInputChange}
             placeholder='name@example.com'
           />
           <label htmlFor='floatingInput'>Email address</label>
@@ -25,10 +48,10 @@ const Login = () => {
             type='password'
             className='form-control'
             id='floatingPassword'
-            name='email'
-            value=''
+            name='password'
+            value={input.password}
             placeholder='Password'
-            onChange={() => {}}
+            onChange={handleInputChange}
           />
           <label htmlFor='floatingPassword'>Password</label>
         </div>

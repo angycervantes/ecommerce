@@ -21,12 +21,14 @@ function useForm (callback, defaults) {
   const handleInputChange = (event) => {
     const { name, value } = event.target
     setInput({ ...input, [name]: value })
+    console.log('holi')
   }
 
   const handleSubmit = (event) => {
     // evitar que se recargue la página y se rompa el SPA
     event.preventDefault()
     callback(input)
+    console.log('hola')
   }
 
   return {

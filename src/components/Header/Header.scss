@@ -1,35 +1,43 @@
-$menu-color: #ffffff;
+$menu-color: #161A31;
+$primary: #fa7f28;
 
 @mixin header-link($spacing: 2px) {
     color: $menu-color;
     text-decoration: none;
-    letter-spacing: 2px;
+    letter-spacing: $spacing;
 }
 
+.header :hover{
+    background-color: #ffffff;
+}
 .header {
+    background-color: #fff;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 15px 30px;
 
     &__logo {
-       @include header-link;
+        @include header-link;
     }
 
-    &__nav-list{
-        display:flex;
+    &__nav-list {
+        display: flex;
         list-style: none;
         column-gap: 20px;
     }
 
-    &__item-link{
+    &__item-link {
         @include header-link(1px);
-        font-size: 16px;
-        font-weight: 500;
-
-        &:hover, &--is-active{
-            border-bottom:n solid 2px $menu-color;
+        font: {
+            size: 16px;
+            weight: 500;
         }
-    }
-}
 
+        &:hover, &--is-active {
+            border-bottom: solid 2px $primary;
+        }
+
+    }
+
+}

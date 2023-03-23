@@ -1,17 +1,21 @@
-import logo from '@/assets/e-com.svg'
-import '@/styles/form.css'
+import { useNavigate } from 'react-router-dom'
 import useForm from '@/hooks/useForm'
 import { registerUserService } from '@/services/userServices'
 
+import logo from '@/assets/e-c.svg'
+import '@/styles/form.css'
+
 const Signup = () => {
+  const navigate = useNavigate()
   const sendData = async (data) => {
     try {
       const response = await registerUserService(data)
       if (response.status === 201) {
         console.log('User created successfully')
+        navigate('/login')
       }
     } catch (error) {
-      console.log('Ocurrio un error', error.message)
+      console.log('Ocurrio un error en SignUp', error.message)
     }
   }
 
@@ -26,7 +30,7 @@ const Signup = () => {
   return (
     <main className='form-signin bg-white rounded-3 w-100 m-auto'>
       <form onSubmit={handleSubmit}>
-        <img className='mb-4' src={logo} alt='' width='72' height='57' />
+        <img className='mb-4' src={logo} alt='' width='58.24' height='32' />
         <h1 className='h3 mb-3 text-center fw-normal'>Please sign up</h1>
 
         <div className='form-floating'>
